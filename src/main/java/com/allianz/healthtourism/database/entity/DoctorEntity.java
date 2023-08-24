@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -41,7 +42,10 @@ public class DoctorEntity extends BaseEntity {
     private ProfessionEnum profession;
 
     // Add hospital info
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinTable(name = "hospital_id")
     private HospitalEntity hospital;
+
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<ReservationEntity> reservationList;
 }
