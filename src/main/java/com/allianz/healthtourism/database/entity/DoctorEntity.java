@@ -1,6 +1,6 @@
 package com.allianz.healthtourism.database.entity;
 
-import com.allianz.healthtourism.model.enums.DoctorProfessionEnum;
+import com.allianz.healthtourism.model.enums.ProfessionEnum;
 import com.allianz.healthtourism.model.enums.GenderEnum;
 import com.allianz.healthtourism.utils.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -38,7 +38,7 @@ public class DoctorEntity extends BaseEntity {
 
     @Column
     @Enumerated(EnumType.STRING)
-    private DoctorProfessionEnum profession;
+    private ProfessionEnum profession;
 
     // Add hospital info
 

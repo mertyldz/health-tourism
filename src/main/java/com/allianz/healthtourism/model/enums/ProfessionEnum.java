@@ -1,6 +1,6 @@
 package com.allianz.healthtourism.model.enums;
 
-public enum DoctorProfessionEnum {
+public enum ProfessionEnum {
     OPHTHALMOLOGY,
     ENT,
     DENTISTRY,
