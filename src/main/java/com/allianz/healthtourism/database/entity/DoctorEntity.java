@@ -41,5 +41,7 @@ public class DoctorEntity extends BaseEntity {
     private ProfessionEnum profession;
 
     // Add hospital info
-
+    @ManyToOne
+    @JoinTable(name = "hospital_id")
+    private HospitalEntity hospital;
 }
