@@ -1,0 +1,27 @@
+package com.allianz.healthtourism.database.entity;
+
+import com.allianz.healthtourism.model.enums.ProfessionEnum;
+import com.allianz.healthtourism.utils.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.time.LocalDate;
+
+@Getter
+@Setter
+@Table
+@Entity
+public class ReservationEntity extends BaseEntity {
+
+    @Column
+    @JsonFormat(pattern = "dd-MM-yyyy")
+    private LocalDate reservationDate;
+
+    @Column
+    @Enumerated(EnumType.STRING)
+    private ProfessionEnum treatmentProfession;
+
+
+}
