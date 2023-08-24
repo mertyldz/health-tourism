@@ -13,7 +13,7 @@ import java.time.LocalTime;
 @Setter
 @Entity
 @Table
-public class PlaneEntity extends BaseEntity {
+public class FlightEntity extends BaseEntity {
     @Column
     private String flightNo;
     @Column
