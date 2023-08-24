@@ -38,4 +38,9 @@ public class PatientEntity extends BaseEntity {
     @Column
     private String email;
 
+    // If patient deleted, also reservation should be deleted.
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "reservation_id")
+    private ReservationEntity reservation;
+
 }

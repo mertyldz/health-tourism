@@ -23,5 +23,12 @@ public class ReservationEntity extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private ProfessionEnum treatmentProfession;
 
+    // CascadeType.ALL is not ok for this. Removing patient if reservation deleted is not desired.
+    @OneToOne(mappedBy = "reservation",
+            cascade = {CascadeType.DETACH, CascadeType.MERGE,
+                    CascadeType.PERSIST, CascadeType.REFRESH})
+    private PatientEntity patient;
+
+
 
 }
