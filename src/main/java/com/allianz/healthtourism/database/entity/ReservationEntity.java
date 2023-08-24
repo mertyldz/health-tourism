@@ -36,6 +36,11 @@ public class ReservationEntity extends BaseEntity {
     @JoinColumn(name = "doctor_id")
     private DoctorEntity doctor;
 
+    // CascadeType.ALL is not ok for this. Removing hospital if reservation deleted is not desired.
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.MERGE,
+            CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinColumn(name = "hospital_id")
+    private HospitalEntity hospital;
 
 
 }

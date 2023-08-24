@@ -2,10 +2,7 @@ package com.allianz.healthtourism.database.entity;
 
 import com.allianz.healthtourism.model.enums.ProfessionEnum;
 import com.allianz.healthtourism.utils.BaseEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -31,6 +28,9 @@ public class HospitalEntity extends BaseEntity {
     @Column
     private List<ProfessionEnum> professionList;
 
-    @OneToMany(mappedBy = "hospital")
+    @OneToMany(mappedBy = "hospital", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<DoctorEntity> doctorList;
+
+    @OneToMany(mappedBy = "hospital", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<ReservationEntity> reservationList;
 }
