@@ -48,5 +48,10 @@ public class ReservationEntity extends BaseEntity {
     @JoinColumn(name = "hotel_id")
     private HotelEntity hotel;
 
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.MERGE,
+            CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinColumn(name = "flight_id")
+    private FlightEntity flight;
+
 
 }
