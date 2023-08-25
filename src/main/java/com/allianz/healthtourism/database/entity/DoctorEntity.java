@@ -14,7 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "patient")
+@Table
 public class DoctorEntity extends BaseEntity {
 
     @Column
@@ -43,7 +43,7 @@ public class DoctorEntity extends BaseEntity {
 
     // Add hospital info
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinTable(name = "hospital_id")
+    @JoinColumn(name = "hospital_id")
     private HospitalEntity hospital;
 
     @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
