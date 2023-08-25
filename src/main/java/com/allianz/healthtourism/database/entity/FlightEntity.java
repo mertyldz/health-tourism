@@ -16,15 +16,11 @@ public class FlightEntity extends BaseEntity {
     @Column
     private String flightNo;
 
-    @Column
-    private String fromPlace;
-
-    @Column
-    private String toPlace;
-
-    // Check is it ok
-    @Column
-    private LocalTime departureTime;
+    // Keep plane if flight is deleted
+    @OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.MERGE,
+            CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinColumn(name = "flight_id")
+    private PlaneEntity plane;
 
     // add relation with reservation ....
     @OneToMany(mappedBy = "flight", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
