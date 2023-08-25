@@ -1,11 +1,11 @@
 package com.allianz.healthtourism.database.entity;
 
 import com.allianz.healthtourism.utils.BaseEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -22,6 +22,7 @@ public class HotelEntity extends BaseEntity {
     private Integer takenCapacity;
     @Column
     private Integer totalCapacity;
+    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<ReservationEntity> reservationList;
 
-    // add relations ....
 }
