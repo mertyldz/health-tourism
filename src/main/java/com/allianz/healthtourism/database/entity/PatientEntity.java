@@ -43,4 +43,9 @@ public class PatientEntity extends BaseEntity {
     @JoinColumn(name = "reservation_id")
     private ReservationEntity reservation;
 
+    // If patient deleted, also examination should be deleted.
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "examination_id")
+    private ExaminationEntity examination;
+
 }
