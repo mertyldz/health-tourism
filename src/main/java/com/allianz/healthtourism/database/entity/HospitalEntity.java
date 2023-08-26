@@ -33,4 +33,17 @@ public class HospitalEntity extends BaseEntity {
 
     @OneToMany(mappedBy = "hospital", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<ReservationEntity> reservationList;
+
+    @Override
+    public String toString() {
+        return "HospitalEntity{" +
+                "name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", professionList=" + professionList +
+                ", doctorList=" + doctorList +
+                ", reservationList=" + reservationList +
+                '}';
+    }
 }

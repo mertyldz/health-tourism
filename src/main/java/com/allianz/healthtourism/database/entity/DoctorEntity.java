@@ -42,10 +42,27 @@ public class DoctorEntity extends BaseEntity {
     private ProfessionEnum profession;
 
     // Add hospital info
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER,
+            cascade = {CascadeType.DETACH, CascadeType.MERGE,
+            CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "hospital_id")
     private HospitalEntity hospital;
 
     @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<ReservationEntity> reservationList;
+
+    @Override
+    public String toString() {
+        return "DoctorEntity{" +
+                "name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", birthDate=" + birthDate +
+                ", gender=" + gender +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", profession=" + profession +
+//                ", hospital=" + hospital +
+                ", reservationList=" + reservationList +
+                '}';
+    }
 }
