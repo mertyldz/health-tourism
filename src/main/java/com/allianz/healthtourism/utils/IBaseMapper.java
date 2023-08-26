@@ -6,8 +6,8 @@ import org.springframework.data.domain.Page;
 import java.util.List;
 
 public interface IBaseMapper<
-        DTO extends BaseDTO,
         Entity extends BaseEntity,
+        DTO extends BaseDTO,
         RequestDTO extends BaseRequestDTO> {
 
     DTO entityToDTO(Entity entity);
