@@ -26,6 +26,7 @@ public class HospitalEntity extends BaseEntity {
     private String email;
 
     @Column
+    @Enumerated(EnumType.STRING)
     private List<ProfessionEnum> professionList;
 
     @OneToMany(mappedBy = "hospital", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
