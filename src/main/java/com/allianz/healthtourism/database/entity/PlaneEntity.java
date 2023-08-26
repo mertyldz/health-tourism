@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -25,7 +25,7 @@ public class PlaneEntity extends BaseEntity {
     private String arrivalCity;
 
     @Column
-    private LocalTime departureTime;
+    private LocalDateTime departureTime;
 
     @OneToOne(mappedBy = "plane", cascade = CascadeType.ALL)
     private FlightEntity flight;
