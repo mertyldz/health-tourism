@@ -1,5 +1,6 @@
 package com.allianz.healthtourism;
 
+import com.allianz.healthtourism.database.entity.FlightEntity;
 import com.allianz.healthtourism.database.entity.PlaneEntity;
 import com.allianz.healthtourism.database.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,9 +8,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
-
-import java.time.LocalDateTime;
-import java.time.Month;
 
 @SpringBootApplication
 @EnableJpaAuditing
@@ -86,18 +84,27 @@ public class HealthTourismApplication implements CommandLineRunner {
 //        // Inserted again?? WHY?
 //        doctorRepository.save(doctor2);
 
-        // Create plane
-        PlaneEntity plane = new PlaneEntity();
-        plane.setAirline("THY");
-        plane.setModel("Boeing");
-        plane.setDepartureTime(LocalDateTime.of(2023, Month.JULY, 29,14,15));
-        plane.setDepartureCity("Berlin");
-        plane.setArrivalCity("İstanbul");
-        planeRepository.save(plane);
+//        // Create plane
+//        PlaneEntity plane = new PlaneEntity();
+//        plane.setAirline("THY");
+//        plane.setModel("Boeing");
+//        plane.setDepartureTime(LocalDateTime.of(2023, Month.JULY, 29,14,15));
+//        plane.setDepartureCity("Berlin");
+//        plane.setArrivalCity("İstanbul");
+//        planeRepository.save(plane);
 
-        //
+//        // Create Flight
+//        FlightEntity flight = new FlightEntity();
+//        flight.setFlightNo("AZXC1234");
+//        flightRepository.save(flight);
 
+        PlaneEntity plane = planeRepository.findById(1L).orElse(null);
+        FlightEntity flight = flightRepository.findById(1L).orElse(null);
+//        if (plane != null && flight != null) {
+//            flight.setPlane(plane);
+//            flightRepository.save(flight);
+//        }
 
-
+        System.out.println(plane);
     }
 }

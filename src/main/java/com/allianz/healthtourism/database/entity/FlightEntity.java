@@ -19,7 +19,7 @@ public class FlightEntity extends BaseEntity {
     // Keep plane if flight is deleted
     @OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.MERGE,
             CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinColumn(name = "flight_id")
+    @JoinColumn(name = "plane_id")
     private PlaneEntity plane;
 
     // add relation with reservation ....
