@@ -1,26 +1,15 @@
 package com.allianz.healthtourism;
 
-import com.allianz.healthtourism.database.entity.DoctorEntity;
-import com.allianz.healthtourism.database.entity.HospitalEntity;
-import com.allianz.healthtourism.database.entity.PatientEntity;
 import com.allianz.healthtourism.database.entity.PlaneEntity;
-import com.allianz.healthtourism.database.repository.DoctorRepository;
-import com.allianz.healthtourism.database.repository.HospitalRepository;
-import com.allianz.healthtourism.database.repository.PatientRepository;
-import com.allianz.healthtourism.model.enums.GenderEnum;
-import com.allianz.healthtourism.model.enums.ProfessionEnum;
+import com.allianz.healthtourism.database.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
 
 @SpringBootApplication
 @EnableJpaAuditing
@@ -31,6 +20,16 @@ public class HealthTourismApplication implements CommandLineRunner {
     DoctorRepository doctorRepository;
     @Autowired
     HospitalRepository hospitalRepository;
+    @Autowired
+    PlaneRepository planeRepository;
+    @Autowired
+    FlightRepository flightRepository;
+    @Autowired
+    ReservationRepository reservationRepository;
+    @Autowired
+    HotelRepository hotelRepository;
+    @Autowired
+    ExaminationRepository examinationRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(HealthTourismApplication.class, args);
@@ -91,7 +90,13 @@ public class HealthTourismApplication implements CommandLineRunner {
         PlaneEntity plane = new PlaneEntity();
         plane.setAirline("THY");
         plane.setModel("Boeing");
-//        plane.setDepartureTime(LocalDateTime.of);
+        plane.setDepartureTime(LocalDateTime.of(2023, Month.JULY, 29,14,15));
+        plane.setDepartureCity("Berlin");
+        plane.setArrivalCity("İstanbul");
+        planeRepository.save(plane);
+
+        //
+
 
 
     }
