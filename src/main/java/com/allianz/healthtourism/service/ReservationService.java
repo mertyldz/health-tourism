@@ -1,74 +1,48 @@
 package com.allianz.healthtourism.service;
 
-import com.allianz.healthtourism.database.entity.*;
-import com.allianz.healthtourism.database.repository.*;
-import jakarta.transaction.Transactional;
+import com.allianz.healthtourism.database.entity.PlaneEntity;
+import com.allianz.healthtourism.database.entity.ReservationEntity;
+import com.allianz.healthtourism.database.repository.PlaneRepository;
+import com.allianz.healthtourism.database.repository.ReservationRepository;
+import com.allianz.healthtourism.database.specification.PlaneSpecification;
+import com.allianz.healthtourism.database.specification.ReservationSpecification;
+import com.allianz.healthtourism.mapper.PlaneMapper;
+import com.allianz.healthtourism.mapper.ReservationMapper;
+import com.allianz.healthtourism.model.requestDTO.PlaneRequestDTO;
+import com.allianz.healthtourism.model.requestDTO.ReservationRequestDTO;
+import com.allianz.healthtourism.model.responseDTO.PlaneDTO;
+import com.allianz.healthtourism.model.responseDTO.ReservationDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ReservationService {
+public class ReservationService extends BaseService<
+        ReservationEntity,
+        ReservationDTO,
+        ReservationRequestDTO,
+        ReservationMapper,
+        ReservationRepository,
+        ReservationSpecification> {
+
+    @Autowired
+    ReservationMapper reservationMapper;
     @Autowired
     ReservationRepository reservationRepository;
     @Autowired
-    PatientRepository patientRepository;
-    @Autowired
-    DoctorRepository doctorRepository;
-    @Autowired
-    HospitalRepository hospitalRepository;
-    @Autowired
-    PlaneRepository planeRepository;
-    @Autowired
-    FlightRepository flightRepository;
-    @Autowired
-    HotelRepository hotelRepository;
-    @Autowired
-    ExaminationRepository examinationRepository;
+    ReservationSpecification reservationSpecification;
 
-    @Transactional
-    public void addRelationsToReservation() {
-        // Add relations to reservation
-        addReservationToPatient();
-        addDoctorToReservation();
-        addHotelToReservation();
-        addFlightToReservation();
-        addHospitalToReservation();
+    @Override
+    protected ReservationMapper getMapper() {
+        return reservationMapper;
     }
 
-    @Transactional
-    public void addHospitalToReservation() {
-        ReservationEntity reservation1 = reservationRepository.findById(1L).orElse(null);
-        HospitalEntity hospital = hospitalRepository.findById(1L).orElse(null);
-        reservation1.setHospital(hospital);
-        reservationRepository.save(reservation1);
+    @Override
+    protected ReservationRepository getRepository() {
+        return reservationRepository;
     }
 
-    private void addFlightToReservation() {
-        ReservationEntity reservation1 = reservationRepository.findById(1L).orElse(null);
-        FlightEntity flight = flightRepository.findById(1L).orElse(null);
-        reservation1.setFlight(flight);
-        reservationRepository.save(reservation1);
-    }
-
-    private void addHotelToReservation() {
-        ReservationEntity reservation1 = reservationRepository.findById(1L).orElse(null);
-        HotelEntity hotel = (hotelRepository.findById(1L).orElse(null));
-        reservation1.setHotel(hotel);
-        reservationRepository.save(reservation1);
-    }
-
-    private void addDoctorToReservation() {
-        ReservationEntity reservation1 = reservationRepository.findById(1L).orElse(null);
-        DoctorEntity doctor = doctorRepository.findById(1L).orElse(null);
-        reservation1.setDoctor(doctor);
-        reservationRepository.save(reservation1);
-    }
-
-    private void addReservationToPatient() {
-        ReservationEntity reservation1 = reservationRepository.findById(1L).orElse(null);
-        PatientEntity patient = patientRepository.findById(1L).orElse(null);
-        patient.setReservation(reservation1);
-        patientRepository.save(patient);
-        reservationRepository.save(reservation1);
+    @Override
+    protected ReservationSpecification getSpecification() {
+        return reservationSpecification;
     }
 }
