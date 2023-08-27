@@ -5,7 +5,7 @@ import com.allianz.healthtourism.database.repository.*;
 import com.allianz.healthtourism.mapper.DoctorMapper;
 import com.allianz.healthtourism.model.enums.GenderEnum;
 import com.allianz.healthtourism.model.enums.ProfessionEnum;
-import com.allianz.healthtourism.service.ReservationService;
+import com.allianz.healthtourism.service.ReservationTestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -38,7 +38,7 @@ public class HealthTourismApplication implements CommandLineRunner {
     @Autowired
     ExaminationRepository examinationRepository;
     @Autowired
-    ReservationService reservationService;
+    ReservationTestService reservationTestService;
 
     @Autowired
     DoctorMapper doctorMapper;
@@ -48,8 +48,7 @@ public class HealthTourismApplication implements CommandLineRunner {
     }
     @Override
     public void run(String... args) throws Exception {
-
-
+        // Data Inserts
         generatePatient();
         generateDoctor();
         generateHospital();
@@ -59,7 +58,7 @@ public class HealthTourismApplication implements CommandLineRunner {
         addPlaneToFlight();
         generateHotel();
         generateReservation();
-        reservationService.addRelationsToReservation();
+        reservationTestService.addRelationsToReservation();
         generateExamination();
         addPatientToExamination();
 
@@ -72,7 +71,7 @@ public class HealthTourismApplication implements CommandLineRunner {
         ExaminationEntity examination = new ExaminationEntity();
         examination.setDiagnosis("Hair loss");
         examination.setTreatmentPrescription("Hair transplant");
-        examination.setExaminationDate(LocalDate.of(2023, Month.JULY, 20));
+        examination.setExaminationDate(LocalDateTime.of(2023, Month.JULY, 20, 15, 15));
         examinationRepository.save(examination);
     }
 
@@ -87,7 +86,7 @@ public class HealthTourismApplication implements CommandLineRunner {
     private void generateReservation() {
         // Create reservation
         ReservationEntity reservation = new ReservationEntity();
-        reservation.setReservationDate(LocalDate.of(2023, Month.APRIL, 25));
+        reservation.setReservationDate(LocalDateTime.of(2023, Month.APRIL, 25, 14, 15));
         reservation.setTreatmentProfession(ProfessionEnum.ENDOCRINOLOGY);
         reservationRepository.save(reservation);
     }
@@ -165,7 +164,7 @@ public class HealthTourismApplication implements CommandLineRunner {
         doctor.setEmail("bora@gmail.com");
         doctor.setPhoneNumber("+9053283123");
         doctor.setGender(GenderEnum.MALE);
-        doctor.setBirthDate(LocalDate.of(1996, Month.FEBRUARY, 12));
+        doctor.setBirthDate(LocalDateTime.of(1996, Month.FEBRUARY, 12, 20, 5));
         doctor.setProfession(ProfessionEnum.PSYCHIATRY);
         doctorRepository.save(doctor);
     }
@@ -178,8 +177,8 @@ public class HealthTourismApplication implements CommandLineRunner {
         patient.setEmail("mert@gmail.com");
         patient.setPhoneNumber("+9053283123");
         patient.setGender(GenderEnum.MALE);
-        LocalDate date = LocalDate.of(1996, Month.JULY, 29);
-        patient.setBirthDate(date);
+        LocalDateTime dateTime = LocalDateTime.of(1996, Month.JULY, 29, 11, 10);
+        patient.setBirthDate(dateTime);
         patientRepository.save(patient);
     }
 }
