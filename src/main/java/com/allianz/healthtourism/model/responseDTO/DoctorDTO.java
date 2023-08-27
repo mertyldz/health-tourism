@@ -5,7 +5,7 @@ import com.allianz.healthtourism.model.enums.ProfessionEnum;
 import com.allianz.healthtourism.utils.BaseDTO;
 import lombok.Data;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
