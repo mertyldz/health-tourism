@@ -10,5 +10,4 @@ public class ExaminationDTO extends BaseDTO {
     private String diagnosis;
     private String treatmentPrescription;
     private LocalDateTime examinationDate;
-    private PatientDTO patient;
 }

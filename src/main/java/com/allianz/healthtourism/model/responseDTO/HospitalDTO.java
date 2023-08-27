@@ -14,6 +14,5 @@ public class HospitalDTO extends BaseDTO {
     private String email;
     private List<ProfessionEnum> professionList;
     private List<DoctorDTO> doctorList;
-    private List<ReservationDTO> reservationList;
 
 }

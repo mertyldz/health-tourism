@@ -7,7 +7,7 @@ import com.allianz.healthtourism.utils.IBaseMapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
-@Mapper(componentModel = "spring", uses = {PatientMapper.class})
+@Mapper(componentModel = "spring")
 public interface ExaminationMapper extends IBaseMapper<ExaminationEntity, ExaminationDTO, ExaminationRequestDTO> {
 
     @Override
@@ -15,9 +15,6 @@ public interface ExaminationMapper extends IBaseMapper<ExaminationEntity, Examin
         entity.setDiagnosis(requestDTO.getDiagnosis());
         entity.setTreatmentPrescription(requestDTO.getTreatmentPrescription());
         entity.setExaminationDate(requestDTO.getExaminationDate());
-        if (requestDTO.getPatient() != null) {
-            entity.setPatient(Mappers.getMapper(PatientMapper.class).requestDTOToEntity(requestDTO.getPatient()));
-        }
         return entity;
     }
 }

@@ -12,5 +12,4 @@ public class HotelDTO extends BaseDTO {
     private String address;
     private Integer takenCapacity;
     private Integer totalCapacity;
-    private List<ReservationDTO> reservationList;
 }

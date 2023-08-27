@@ -13,7 +13,5 @@ public class HospitalRequestDTO extends BaseRequestDTO {
     private String phoneNumber;
     private String email;
     private List<ProfessionEnum> professionList;
-    private List<DoctorRequestDTO> doctorList;
-    private List<ReservationRequestDTO> reservationList;
 
 }

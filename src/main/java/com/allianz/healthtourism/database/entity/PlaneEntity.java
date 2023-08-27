@@ -19,16 +19,6 @@ public class PlaneEntity extends BaseEntity {
     @Column
     private String airline;
 
-    @Column
-    private String departureCity;
-
-    @Column
-    private String arrivalCity;
-
-    @Column(columnDefinition = "TIMESTAMP")
-    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
-    private LocalDateTime departureTime;
-
     @OneToOne(mappedBy = "plane", cascade = CascadeType.ALL)
     private FlightEntity flight;
 }

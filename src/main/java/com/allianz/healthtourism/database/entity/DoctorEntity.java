@@ -8,7 +8,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 @Getter
@@ -25,7 +25,7 @@ public class DoctorEntity extends BaseEntity {
 
     @Column(columnDefinition = "TIMESTAMP")
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
-    private LocalDateTime birthDate;
+    private LocalDate birthDate;
 
     @Column
     @Enumerated(EnumType.STRING)

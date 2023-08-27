@@ -12,6 +12,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.ArrayList;
@@ -45,24 +46,24 @@ public class HealthTourismApplication implements CommandLineRunner {
     public static void main(String[] args) {
         SpringApplication.run(HealthTourismApplication.class, args);
     }
+
     @Override
     public void run(String... args) throws Exception {
         // Data Inserts
-        generatePatient();
-        generateDoctor();
-        generateHospital();
-        addDoctorToHospital();
-        generatePlane();
-        generateFlight();
-        addPlaneToFlight();
-        generateHotel();
-        generateReservation();
-        reservationTestService.addRelationsToReservation();
-        generateExamination();
-        addPatientToExamination();
+//        generatePatient();
+//        generateDoctor();
+//        generateHospital();
+//        addDoctorToHospital();
+//        generatePlane();
+//        generateFlight();
+//        addPlaneToFlight();
+//        generateHotel();
+//        generateReservation();
+//        reservationTestService.addRelationsToReservation();
+//        generateExamination();
+//        addPatientToExamination();
 
     }
-
 
 
     private void generateExamination() {
@@ -124,9 +125,6 @@ public class HealthTourismApplication implements CommandLineRunner {
         PlaneEntity plane = new PlaneEntity();
         plane.setAirline("THY");
         plane.setModel("Boeing");
-        plane.setDepartureTime(LocalDateTime.of(2023, Month.JULY, 29, 14, 15));
-        plane.setDepartureCity("Berlin");
-        plane.setArrivalCity("İstanbul");
         planeRepository.save(plane);
     }
 
@@ -163,7 +161,7 @@ public class HealthTourismApplication implements CommandLineRunner {
         doctor.setEmail("bora@gmail.com");
         doctor.setPhoneNumber("+9053283123");
         doctor.setGender(GenderEnum.MALE);
-        doctor.setBirthDate(LocalDateTime.of(1996, Month.FEBRUARY, 12, 20, 5));
+        doctor.setBirthDate(LocalDate.of(1996, Month.FEBRUARY, 12));
         doctor.setProfession(ProfessionEnum.PSYCHIATRY);
         doctorRepository.save(doctor);
     }

@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 public class ReservationDTO extends BaseDTO {
     private LocalDateTime reservationDate;
     private ProfessionEnum treatmentProfession;
-    private PatientDTO patient;
     private DoctorDTO doctor;
     private HospitalDTO hospital;
     private HotelDTO hotel;

@@ -5,20 +5,16 @@ import com.allianz.healthtourism.model.requestDTO.FlightRequestDTO;
 import com.allianz.healthtourism.model.responseDTO.FlightDTO;
 import com.allianz.healthtourism.utils.IBaseMapper;
 import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
 
-@Mapper(componentModel = "spring", uses = {PlaneMapper.class, ReservationMapper.class})
+@Mapper(componentModel = "spring")
 public interface FlightMapper extends IBaseMapper<FlightEntity, FlightDTO, FlightRequestDTO> {
+
     @Override
     default FlightEntity requestDtoToExistEntity(FlightEntity entity, FlightRequestDTO requestDTO) {
         entity.setFlightNo(requestDTO.getFlightNo());
-        if (requestDTO.getPlane() != null) {
-            entity.setPlane(Mappers.getMapper(PlaneMapper.class).requestDTOToEntity(requestDTO.getPlane()));
-        }
-        if (requestDTO.getReservationList() != null) {
-            entity.setReservationList(Mappers.getMapper(ReservationMapper.class).
-                    requestDtoListTOEntityList(requestDTO.getReservationList()));
-        }
+        entity.setDepartureCity(requestDTO.getDepartureCity());
+        entity.setArrivalCity(requestDTO.getArrivalCity());
+        entity.setDepartureTime(requestDTO.getDepartureTime());
         return entity;
     }
 }

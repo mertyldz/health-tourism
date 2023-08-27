@@ -15,7 +15,4 @@ public class PatientRequestDTO extends BaseRequestDTO {
     private String address;
     private String phoneNumber;
     private String email;
-    private ReservationRequestDTO reservation;
-    private ExaminationRequestDTO examination;
-
 }

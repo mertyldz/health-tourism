@@ -7,7 +7,7 @@ import com.allianz.healthtourism.utils.IBaseMapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
-@Mapper(componentModel = "spring", uses = {ReservationMapper.class})
+@Mapper(componentModel = "spring")
 public interface HotelMapper extends IBaseMapper<HotelEntity, HotelDTO, HotelRequestDTO> {
     @Override
     default HotelEntity requestDtoToExistEntity(HotelEntity entity, HotelRequestDTO requestDTO) {
@@ -16,10 +16,7 @@ public interface HotelMapper extends IBaseMapper<HotelEntity, HotelDTO, HotelReq
         entity.setAddress(requestDTO.getAddress());
         entity.setTakenCapacity(requestDTO.getTakenCapacity());
         entity.setTotalCapacity(requestDTO.getTotalCapacity());
-        if (requestDTO.getReservationList() != null) {
-            entity.setReservationList(Mappers.getMapper(ReservationMapper.class).
-                    requestDtoListTOEntityList(requestDTO.getReservationList()));
-        }
+
         return entity;
     }
 }

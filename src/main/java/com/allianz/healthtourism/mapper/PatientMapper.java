@@ -18,12 +18,6 @@ public interface PatientMapper extends IBaseMapper<PatientEntity, PatientDTO, Pa
         entity.setAddress(requestDTO.getAddress());
         entity.setPhoneNumber(requestDTO.getPhoneNumber());
         entity.setEmail(requestDTO.getEmail());
-        if (requestDTO.getReservation() != null) {
-            entity.setReservation(Mappers.getMapper(ReservationMapper.class).requestDTOToEntity(requestDTO.getReservation()));
-        }
-        if (requestDTO.getExamination() != null) {
-            entity.setExamination(Mappers.getMapper(ExaminationMapper.class).requestDTOToEntity(requestDTO.getExamination()));
-        }
         return entity;
     }
 }

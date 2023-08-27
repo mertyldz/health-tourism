@@ -10,5 +10,4 @@ public class ExaminationRequestDTO extends BaseRequestDTO {
     private String diagnosis;
     private String treatmentPrescription;
     private LocalDateTime examinationDate;
-    private PatientRequestDTO patient;
 }

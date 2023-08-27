@@ -15,8 +15,4 @@ import java.time.LocalDateTime;
 public class PlaneDTO extends BaseDTO {
     private String model;
     private String airline;
-    private String departureCity;
-    private String arrivalCity;
-    private LocalDateTime departureTime;
-    private FlightDTO flight;
 }

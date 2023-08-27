@@ -17,14 +17,6 @@ public interface HospitalMapper extends IBaseMapper<HospitalEntity, HospitalDTO,
         entity.setPhoneNumber(requestDTO.getPhoneNumber());
         entity.setEmail(requestDTO.getEmail());
         entity.setProfessionList(requestDTO.getProfessionList());
-        if (requestDTO.getDoctorList() != null) {
-            entity.setDoctorList(Mappers.getMapper(DoctorMapper.class).
-                    requestDtoListTOEntityList(requestDTO.getDoctorList()));
-        }
-        if (requestDTO.getReservationList() != null) {
-            entity.setReservationList(Mappers.getMapper(ReservationMapper.class).
-                    requestDtoListTOEntityList(requestDTO.getReservationList()));
-        }
         return entity;
     }
 }
