@@ -1,11 +1,11 @@
 package com.allianz.healthtourism.exceptions;
 
-public class RecordNotFound extends NullPointerException {
-    public RecordNotFound() {
+public class RecordNotFoundException extends NullPointerException {
+    public RecordNotFoundException() {
         System.out.println("Record not found!");
     }
 
-    public RecordNotFound(String s) {
+    public RecordNotFoundException(String s) {
         System.out.println("Record not found!");
     }
 }
