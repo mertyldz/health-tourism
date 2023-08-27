@@ -2,6 +2,7 @@ package com.allianz.healthtourism;
 
 import com.allianz.healthtourism.database.entity.*;
 import com.allianz.healthtourism.database.repository.*;
+import com.allianz.healthtourism.mapper.DoctorMapper;
 import com.allianz.healthtourism.model.enums.GenderEnum;
 import com.allianz.healthtourism.model.enums.ProfessionEnum;
 import com.allianz.healthtourism.service.ReservationService;
@@ -38,6 +39,9 @@ public class HealthTourismApplication implements CommandLineRunner {
     ExaminationRepository examinationRepository;
     @Autowired
     ReservationService reservationService;
+
+    @Autowired
+    DoctorMapper doctorMapper;
 
     public static void main(String[] args) {
         SpringApplication.run(HealthTourismApplication.class, args);
