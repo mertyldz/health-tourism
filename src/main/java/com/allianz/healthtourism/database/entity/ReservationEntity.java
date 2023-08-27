@@ -22,33 +22,22 @@ public class ReservationEntity extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private ProfessionEnum treatmentProfession;
 
-    // Reservation mapping.
-    // CascadeType.ALL is not ok for this. Removing patient if reservation deleted is not desired.
-    @OneToOne(mappedBy = "reservation",
-            cascade = {CascadeType.DETACH, CascadeType.MERGE,
-                    CascadeType.PERSIST, CascadeType.REFRESH})
+    @OneToOne(mappedBy = "reservation", cascade = CascadeType.ALL)
     private PatientEntity patient;
 
-    // CascadeType.ALL is not ok for this. Removing doctor if reservation deleted is not desired.
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.MERGE,
-            CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "doctor_id")
     private DoctorEntity doctor;
 
-    // CascadeType.ALL is not ok for this. Removing hospital if reservation deleted is not desired.
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.MERGE,
-            CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "hospital_id")
     private HospitalEntity hospital;
 
-    // CascadeType.ALL is not ok for this. Removing hotel if reservation deleted is not desired.
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.MERGE,
-            CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "hotel_id")
     private HotelEntity hotel;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.MERGE,
-            CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "flight_id")
     private FlightEntity flight;
 

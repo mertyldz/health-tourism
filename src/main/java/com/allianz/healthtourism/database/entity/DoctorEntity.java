@@ -42,9 +42,7 @@ public class DoctorEntity extends BaseEntity {
     private ProfessionEnum profession;
 
     // Add hospital info
-    @ManyToOne(fetch = FetchType.EAGER,
-            cascade = {CascadeType.DETACH, CascadeType.MERGE,
-                    CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinColumn(name = "hospital_id")
     private HospitalEntity hospital;
 
