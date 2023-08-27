@@ -12,7 +12,7 @@ import java.util.List;
 public class DoctorDTO extends BaseDTO {
     private String name;
     private String surname;
-    private LocalDate birthDate;
+    private LocalDateTime birthDate;
     private GenderEnum gender;
     private String phoneNumber;
     private String email;

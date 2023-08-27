@@ -3,12 +3,12 @@ package com.allianz.healthtourism.model.requestDTO;
 import com.allianz.healthtourism.utils.BaseRequestDTO;
 import lombok.Data;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 public class ExaminationRequestDTO extends BaseRequestDTO {
     private String diagnosis;
     private String treatmentPrescription;
-    private LocalDate examinationDate;
+    private LocalDateTime examinationDate;
     private PatientRequestDTO patient;
 }

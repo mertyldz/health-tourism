@@ -4,13 +4,13 @@ import com.allianz.healthtourism.model.enums.GenderEnum;
 import com.allianz.healthtourism.utils.BaseDTO;
 import lombok.Data;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 public class PatientDTO extends BaseDTO {
     private String name;
     private String surname;
-    private LocalDate birthDate;
+    private LocalDateTime birthDate;
     private GenderEnum gender;
     private String address;
     private String phoneNumber;

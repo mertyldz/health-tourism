@@ -4,11 +4,11 @@ import com.allianz.healthtourism.model.enums.ProfessionEnum;
 import com.allianz.healthtourism.utils.BaseRequestDTO;
 import lombok.Data;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 public class ReservationRequestDTO extends BaseRequestDTO {
-    private LocalDate reservationDate;
+    private LocalDateTime reservationDate;
     private ProfessionEnum treatmentProfession;
     private PatientRequestDTO patient;
     private DoctorRequestDTO doctor;
