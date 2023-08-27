@@ -1,14 +1,14 @@
 package com.allianz.healthtourism.database.entity;
 
-import com.allianz.healthtourism.model.enums.ProfessionEnum;
 import com.allianz.healthtourism.model.enums.GenderEnum;
+import com.allianz.healthtourism.model.enums.ProfessionEnum;
 import com.allianz.healthtourism.utils.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -23,9 +23,9 @@ public class DoctorEntity extends BaseEntity {
     @Column
     private String surname;
 
-    @Column
-    @JsonFormat(pattern = "dd-MM-yyyy")
-    private LocalDate birthDate;
+    @Column(columnDefinition = "TIMESTAMP")
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
+    private LocalDateTime birthDate;
 
     @Column
     @Enumerated(EnumType.STRING)
@@ -44,7 +44,7 @@ public class DoctorEntity extends BaseEntity {
     // Add hospital info
     @ManyToOne(fetch = FetchType.EAGER,
             cascade = {CascadeType.DETACH, CascadeType.MERGE,
-            CascadeType.PERSIST, CascadeType.REFRESH})
+                    CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "hospital_id")
     private HospitalEntity hospital;
 

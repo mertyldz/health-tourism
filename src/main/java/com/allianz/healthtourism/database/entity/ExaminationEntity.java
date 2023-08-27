@@ -9,7 +9,7 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -22,9 +22,9 @@ public class ExaminationEntity extends BaseEntity {
     @Column
     private String treatmentPrescription;
 
-    @Column
-    @JsonFormat(pattern = "dd-MM-yyyy")
-    private LocalDate examinationDate;
+    @Column(columnDefinition = "TIMESTAMP")
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
+    private LocalDateTime examinationDate;
 
     @OneToOne(mappedBy = "examination")
     private PatientEntity patient;
