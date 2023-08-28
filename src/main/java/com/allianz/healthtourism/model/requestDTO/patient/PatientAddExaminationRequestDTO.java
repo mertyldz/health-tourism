@@ -1,11 +1,11 @@
-package com.allianz.healthtourism.model.requestDTO.examination;
+package com.allianz.healthtourism.model.requestDTO.patient;
 
 import lombok.Data;
 
 import java.util.UUID;
 
 @Data
-public class ExaminationAddPatientRequestDTO {
-    private UUID examinationUuid;
+public class PatientAddExaminationRequestDTO {
     private UUID patientUuid;
+    private UUID examinationUuid;
 }

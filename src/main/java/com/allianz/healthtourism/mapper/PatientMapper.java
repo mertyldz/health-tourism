@@ -1,11 +1,10 @@
 package com.allianz.healthtourism.mapper;
 
 import com.allianz.healthtourism.database.entity.PatientEntity;
-import com.allianz.healthtourism.model.requestDTO.PatientRequestDTO;
+import com.allianz.healthtourism.model.requestDTO.patient.PatientRequestDTO;
 import com.allianz.healthtourism.model.responseDTO.PatientDTO;
 import com.allianz.healthtourism.utils.IBaseMapper;
 import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring", uses = {ExaminationMapper.class, ReservationMapper.class})
 public interface PatientMapper extends IBaseMapper<PatientEntity, PatientDTO, PatientRequestDTO> {
