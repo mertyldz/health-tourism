@@ -4,7 +4,7 @@ import com.allianz.healthtourism.database.entity.ExaminationEntity;
 import com.allianz.healthtourism.database.repository.ExaminationRepository;
 import com.allianz.healthtourism.database.specification.ExaminationSpecification;
 import com.allianz.healthtourism.mapper.ExaminationMapper;
-import com.allianz.healthtourism.model.requestDTO.ExaminationRequestDTO;
+import com.allianz.healthtourism.model.requestDTO.examination.ExaminationRequestDTO;
 import com.allianz.healthtourism.model.responseDTO.ExaminationDTO;
 import com.allianz.healthtourism.service.ExaminationService;
 import com.allianz.healthtourism.utils.BaseController;

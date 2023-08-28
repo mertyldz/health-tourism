@@ -1,16 +1,15 @@
 package com.allianz.healthtourism.service;
 
 import com.allianz.healthtourism.database.entity.ExaminationEntity;
-import com.allianz.healthtourism.database.repository.DoctorRepository;
 import com.allianz.healthtourism.database.repository.ExaminationRepository;
-import com.allianz.healthtourism.database.specification.DoctorSpecification;
 import com.allianz.healthtourism.database.specification.ExaminationSpecification;
-import com.allianz.healthtourism.mapper.DoctorMapper;
 import com.allianz.healthtourism.mapper.ExaminationMapper;
-import com.allianz.healthtourism.model.requestDTO.ExaminationRequestDTO;
+import com.allianz.healthtourism.model.requestDTO.examination.ExaminationRequestDTO;
 import com.allianz.healthtourism.model.responseDTO.ExaminationDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.UUID;
 
 @Service
 public class ExaminationService extends BaseService<
@@ -42,4 +41,6 @@ public class ExaminationService extends BaseService<
     protected ExaminationSpecification getSpecification() {
         return examinationSpecification;
     }
+
+
 }
