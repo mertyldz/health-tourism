@@ -67,4 +67,10 @@ public class ReservationController extends BaseController<
                 HttpStatus.OK);
     }
 
+    @PostMapping("approve-reservation")
+    public ResponseEntity<Boolean> approveReservation(@RequestBody ReservationApproveRequestDTO approveRequestDTO){
+        return new ResponseEntity<>(reservationService.approveReservation(approveRequestDTO.getReservationUuid()),
+                HttpStatus.OK);
+    }
+
 }

@@ -8,9 +8,14 @@ import com.allianz.healthtourism.mapper.ReservationMapper;
 import com.allianz.healthtourism.model.requestDTO.reservation.ReservationRequestDTO;
 import com.allianz.healthtourism.model.responseDTO.ReservationDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class ReservationService extends BaseService<
@@ -50,14 +55,15 @@ public class ReservationService extends BaseService<
     protected ReservationSpecification getSpecification() {
         return reservationSpecification;
     }
+
     public Boolean addHospitalToReservation(UUID reservationUuid, UUID hospitalUuid) {
         ReservationEntity reservation = reservationRepository.findByUuid(reservationUuid).orElse(null);
         HospitalEntity hospital = hospitalRepository.findByUuid(hospitalUuid).orElse(null);
-        if(reservation == null){
+        if (reservation == null) {
             throw new RecordNotFoundException("Reservation is not found!");
         }
 
-        if(hospital == null){
+        if (hospital == null) {
             throw new RecordNotFoundException("Hospital is not found!");
         }
 
@@ -69,11 +75,11 @@ public class ReservationService extends BaseService<
     public Boolean addFlightToReservation(UUID reservationUuid, UUID flightUuid) {
         ReservationEntity reservation = reservationRepository.findByUuid(reservationUuid).orElse(null);
         FlightEntity flight = flightRepository.findByUuid(flightUuid).orElse(null);
-        if(reservation == null){
+        if (reservation == null) {
             throw new RecordNotFoundException("Reservation is not found!");
         }
 
-        if(flight == null){
+        if (flight == null) {
             throw new RecordNotFoundException("Flight is not found!");
         }
         reservation.setFlight(flight);
@@ -84,11 +90,11 @@ public class ReservationService extends BaseService<
     public Boolean addHotelToReservation(UUID reservationUuid, UUID hotelUuid) {
         ReservationEntity reservation = reservationRepository.findByUuid(reservationUuid).orElse(null);
         HotelEntity hotel = hotelRepository.findByUuid(hotelUuid).orElse(null);
-        if(reservation == null){
+        if (reservation == null) {
             throw new RecordNotFoundException("Reservation is not found!");
         }
 
-        if(hotel == null){
+        if (hotel == null) {
             throw new RecordNotFoundException("Hotel is not found!");
         }
         reservation.setHotel(hotel);
@@ -99,15 +105,34 @@ public class ReservationService extends BaseService<
     public Boolean addDoctorToReservation(UUID reservationUuid, UUID doctorUuid) {
         ReservationEntity reservation = reservationRepository.findByUuid(reservationUuid).orElse(null);
         DoctorEntity doctor = doctorRepository.findByUuid(doctorUuid).orElse(null);
-        if(reservation == null){
+        if (reservation == null) {
             throw new RecordNotFoundException("Reservation is not found!");
         }
 
-        if(doctor == null){
+        if (doctor == null) {
             throw new RecordNotFoundException("Doctor is not found!");
         }
         reservation.setDoctor(doctor);
         reservationRepository.save(reservation);
         return Boolean.TRUE;
+    }
+
+    public Boolean approveReservation(UUID uuid) {
+        ReservationEntity reservation = reservationRepository.findByUuid(uuid).orElse(null);
+        if (reservation == null) {
+            throw new RecordNotFoundException("Reservation is not found!");
+        }
+        reservation.setApproved(true);
+        return Boolean.TRUE;
+    }
+
+    @Scheduled(fixedDelay = 5L, timeUnit = TimeUnit.MINUTES)
+    public void checkReservations() {
+        List<ReservationEntity> reservationList = reservationRepository.findNotApprovedReservations();
+        for (ReservationEntity reservation : reservationList) {
+            if (!(reservation.getApproved()) && reservation.getCreationDate().plusMinutes(10).isBefore(LocalDateTime.now())) {
+                reservationRepository.delete(reservation);
+            }
+        }
     }
 }

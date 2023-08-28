@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Getter
 @Setter
@@ -21,6 +22,12 @@ public class ReservationEntity extends BaseEntity {
     @Column
     @Enumerated(EnumType.STRING)
     private ProfessionEnum treatmentProfession;
+
+    @Column
+    private Integer price;
+
+    @Column
+    private Boolean approved;
 
     @OneToOne(mappedBy = "reservation", cascade = CascadeType.ALL)
     private PatientEntity patient;
@@ -40,6 +47,5 @@ public class ReservationEntity extends BaseEntity {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "flight_id")
     private FlightEntity flight;
-
 
 }
