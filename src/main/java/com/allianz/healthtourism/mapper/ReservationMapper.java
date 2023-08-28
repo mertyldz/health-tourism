@@ -1,7 +1,7 @@
 package com.allianz.healthtourism.mapper;
 
 import com.allianz.healthtourism.database.entity.ReservationEntity;
-import com.allianz.healthtourism.model.requestDTO.ReservationRequestDTO;
+import com.allianz.healthtourism.model.requestDTO.reservation.ReservationRequestDTO;
 import com.allianz.healthtourism.model.responseDTO.ReservationDTO;
 import com.allianz.healthtourism.utils.IBaseMapper;
 import org.mapstruct.Mapper;

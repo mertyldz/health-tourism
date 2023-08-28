@@ -4,7 +4,7 @@ import com.allianz.healthtourism.database.entity.PlaneEntity;
 import com.allianz.healthtourism.database.repository.PlaneRepository;
 import com.allianz.healthtourism.database.specification.PlaneSpecification;
 import com.allianz.healthtourism.mapper.PlaneMapper;
-import com.allianz.healthtourism.model.requestDTO.PlaneRequestDTO;
+import com.allianz.healthtourism.model.requestDTO.plane.PlaneRequestDTO;
 import com.allianz.healthtourism.model.responseDTO.PlaneDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

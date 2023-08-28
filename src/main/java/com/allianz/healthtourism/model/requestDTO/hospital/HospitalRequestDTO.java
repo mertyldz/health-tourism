@@ -1,4 +1,4 @@
-package com.allianz.healthtourism.model.requestDTO;
+package com.allianz.healthtourism.model.requestDTO.hospital;
 
 import com.allianz.healthtourism.model.enums.ProfessionEnum;
 import com.allianz.healthtourism.utils.BaseRequestDTO;

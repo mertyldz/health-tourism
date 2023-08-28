@@ -4,7 +4,7 @@ import com.allianz.healthtourism.database.entity.ReservationEntity;
 import com.allianz.healthtourism.database.repository.ReservationRepository;
 import com.allianz.healthtourism.database.specification.ReservationSpecification;
 import com.allianz.healthtourism.mapper.ReservationMapper;
-import com.allianz.healthtourism.model.requestDTO.ReservationRequestDTO;
+import com.allianz.healthtourism.model.requestDTO.reservation.ReservationRequestDTO;
 import com.allianz.healthtourism.model.responseDTO.ReservationDTO;
 import com.allianz.healthtourism.service.ReservationService;
 import com.allianz.healthtourism.utils.BaseController;

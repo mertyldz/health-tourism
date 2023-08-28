@@ -1,4 +1,4 @@
-package com.allianz.healthtourism.model.requestDTO;
+package com.allianz.healthtourism.model.requestDTO.plane;
 
 import com.allianz.healthtourism.utils.BaseRequestDTO;
 import lombok.Data;
