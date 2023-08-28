@@ -1,6 +1,7 @@
 package com.allianz.healthtourism.model.requestDTO;
 
 import com.allianz.healthtourism.model.enums.ProfessionEnum;
+import com.allianz.healthtourism.model.requestDTO.doctor.DoctorRequestDTO;
 import com.allianz.healthtourism.utils.BaseRequestDTO;
 import lombok.Data;
 
