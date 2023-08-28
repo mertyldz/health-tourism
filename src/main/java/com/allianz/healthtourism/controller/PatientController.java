@@ -5,6 +5,7 @@ import com.allianz.healthtourism.database.repository.PatientRepository;
 import com.allianz.healthtourism.database.specification.PatientSpecification;
 import com.allianz.healthtourism.mapper.PatientMapper;
 import com.allianz.healthtourism.model.requestDTO.patient.PatientAddExaminationRequestDTO;
+import com.allianz.healthtourism.model.requestDTO.patient.PatientAddReservationRequestDTO;
 import com.allianz.healthtourism.model.requestDTO.patient.PatientRequestDTO;
 import com.allianz.healthtourism.model.responseDTO.PatientDTO;
 import com.allianz.healthtourism.service.PatientService;
@@ -39,10 +40,18 @@ public class PatientController extends BaseController<
     @PostMapping("add-examination")
     public ResponseEntity<Boolean> addExaminationToPatient(@RequestBody PatientAddExaminationRequestDTO
                                                                    patientAddExaminationRequestDTO) {
-        return new ResponseEntity<>(patientService.
-                addPatientToExamination(
-                        patientAddExaminationRequestDTO.getPatientUuid(),
-                        patientAddExaminationRequestDTO.getExaminationUuid()),
+        return new ResponseEntity<>(patientService.addPatientToExamination(
+                patientAddExaminationRequestDTO.getPatientUuid(),
+                patientAddExaminationRequestDTO.getExaminationUuid()),
+                HttpStatus.OK);
+    }
+
+    @PostMapping("add-reservation")
+    public ResponseEntity<Boolean> addReservationToPatient(@RequestBody PatientAddReservationRequestDTO
+                                                                   patientAddReservationRequestDTO) {
+        return new ResponseEntity<>(patientService.addReservationToPatient(
+                patientAddReservationRequestDTO.getPatientUuid(),
+                patientAddReservationRequestDTO.getReservationUuid()),
                 HttpStatus.OK);
     }
 
