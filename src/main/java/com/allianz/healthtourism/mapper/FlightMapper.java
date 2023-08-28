@@ -1,7 +1,7 @@
 package com.allianz.healthtourism.mapper;
 
 import com.allianz.healthtourism.database.entity.FlightEntity;
-import com.allianz.healthtourism.model.requestDTO.FlightRequestDTO;
+import com.allianz.healthtourism.model.requestDTO.flight.FlightRequestDTO;
 import com.allianz.healthtourism.model.responseDTO.FlightDTO;
 import com.allianz.healthtourism.utils.IBaseMapper;
 import org.mapstruct.Mapper;
