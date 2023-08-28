@@ -5,7 +5,6 @@ import com.allianz.healthtourism.database.repository.*;
 import com.allianz.healthtourism.mapper.DoctorMapper;
 import com.allianz.healthtourism.model.enums.GenderEnum;
 import com.allianz.healthtourism.model.enums.ProfessionEnum;
-import com.allianz.healthtourism.service.ReservationTestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -37,9 +36,6 @@ public class HealthTourismApplication implements CommandLineRunner {
     HotelRepository hotelRepository;
     @Autowired
     ExaminationRepository examinationRepository;
-    @Autowired
-    ReservationTestService reservationTestService;
-
     @Autowired
     DoctorMapper doctorMapper;
 
