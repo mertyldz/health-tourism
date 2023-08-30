@@ -40,6 +40,8 @@ public class HealthTourismApplication implements CommandLineRunner {
     ExaminationRepository examinationRepository;
     @Autowired
     DoctorMapper doctorMapper;
+    @Autowired
+    RoleEntityRepository roleEntityRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(HealthTourismApplication.class, args);
@@ -60,7 +62,25 @@ public class HealthTourismApplication implements CommandLineRunner {
 //        reservationTestService.addRelationsToReservation();
 //        generateExamination();
 //        addPatientToExamination();
+//        generateRoles();
 
+    }
+
+    private void generateRoles() {
+        RoleEntity userRole = new RoleEntity();
+        userRole.setName("USER");
+        userRole.setDescription("Basic patient role");
+        roleEntityRepository.save(userRole);
+
+        RoleEntity adminRole = new RoleEntity();
+        adminRole.setName("ADMIN");
+        adminRole.setDescription("Admin role for management of provided services");
+        roleEntityRepository.save(adminRole);
+
+        RoleEntity doctorRole = new RoleEntity();
+        doctorRole.setName("DOCTOR");
+        doctorRole.setDescription("Doctor role for doctors to do their job");
+        roleEntityRepository.save(doctorRole);
     }
 
 
