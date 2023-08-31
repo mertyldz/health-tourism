@@ -49,7 +49,7 @@ public class HealthTourismApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        // Data Inserts
+        // Data Inserts to test APIs
 //        generatePatient();
 //        generateDoctor();
 //        generateHospital();
@@ -59,9 +59,10 @@ public class HealthTourismApplication implements CommandLineRunner {
 //        addPlaneToFlight();
 //        generateHotel();
 //        generateReservation();
-//        reservationTestService.addRelationsToReservation();
 //        generateExamination();
 //        addPatientToExamination();
+
+        // This generates roles to register
 //        generateRoles();
 
     }
@@ -135,6 +136,8 @@ public class HealthTourismApplication implements CommandLineRunner {
         // Create Flight
         FlightEntity flight = new FlightEntity();
         flight.setFlightNo("AZXC1234");
+        flight.setDepartureCity("Berlin");
+        flight.setArrivalCity("Muğla");
         flightRepository.save(flight);
     }
 

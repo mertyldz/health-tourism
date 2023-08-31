@@ -40,21 +40,37 @@ public class SecurityConfiguration {
             "/api/public/authenticate",
             "/actuator/*",
             "/swagger-ui/**",
-            "/hospital",
-            "/hospital/**"
+            "/doctor/get-all-filter",
+            "/flight/get-all-filter",
+            "/hospital/get-all-filter",
+            "/hotel/get-all-filter",
 
     };
     private static final String[] DOCTOR_AUTH_WHITELIST = {
-            "/doctor",
-            "/doctor/**"
-
+            "/examination",
+            "/examination/**"
     };
 
     private static final String[] ADMIN_AUTH_WHITELIST = {
+            "/doctor",
+            "/doctor/**",
             "/flight",
-            "/flight/**"
-
+            "/flight/**",
+            "/hospital",
+            "/hospital/**",
+            "/hotel",
+            "/hotel/**",
+            "/plane",
+            "/plane/**"
     };
+
+    private static final String[] USER_AUTH_WHITELIST = {
+            "/patient",
+            "/patient/**",
+            "/reservation",
+            "/reservation/**"
+    };
+
     @Autowired
     private UserEntityRepository userRepo;
     @Autowired
@@ -82,7 +98,8 @@ public class SecurityConfiguration {
             authorize
                     .requestMatchers(AUTH_WHITELIST).permitAll()
                     .requestMatchers(DOCTOR_AUTH_WHITELIST).hasRole("DOCTOR")
-                    .requestMatchers(ADMIN_AUTH_WHITELIST).hasRole("ADMIN");
+                    .requestMatchers(ADMIN_AUTH_WHITELIST).hasRole("ADMIN")
+                    .requestMatchers(USER_AUTH_WHITELIST).hasRole("USER");
         });
 
         http.userDetailsService(uds).exceptionHandling(ex -> ex.authenticationEntryPoint(
