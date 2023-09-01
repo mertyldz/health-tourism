@@ -66,6 +66,11 @@ public class ReservationController extends BaseController<
                 addDoctorRequestDTO.getReservationUuid(), addDoctorRequestDTO.getDoctorUuid()),
                 HttpStatus.OK);
     }
+    @PostMapping("make-payment")
+    public ResponseEntity<Boolean> makePayment(@RequestBody ReservationPaymentRequestDTO reservationPaymentRequestDTO){
+        return new ResponseEntity<>(reservationService.makePayment(reservationPaymentRequestDTO.getReservationUuid()),
+                HttpStatus.OK);
+    }
 
     @PostMapping("approve-reservation")
     public ResponseEntity<Boolean> approveReservation(@RequestBody ReservationApproveRequestDTO approveRequestDTO){

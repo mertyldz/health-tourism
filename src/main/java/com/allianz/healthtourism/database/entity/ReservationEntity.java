@@ -29,6 +29,9 @@ public class ReservationEntity extends BaseEntity {
     @Column
     private Boolean approved;
 
+    @Column
+    private Boolean paid;
+
     @OneToOne(mappedBy = "reservation", cascade = CascadeType.ALL)
     private PatientEntity patient;
 

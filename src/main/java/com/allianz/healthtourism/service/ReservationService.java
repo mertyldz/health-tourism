@@ -5,6 +5,7 @@ import com.allianz.healthtourism.database.repository.*;
 import com.allianz.healthtourism.database.specification.ReservationSpecification;
 import com.allianz.healthtourism.exceptions.CapacityException;
 import com.allianz.healthtourism.exceptions.OrderException;
+import com.allianz.healthtourism.exceptions.PaymentException;
 import com.allianz.healthtourism.exceptions.RecordNotFoundException;
 import com.allianz.healthtourism.mapper.ReservationMapper;
 import com.allianz.healthtourism.model.requestDTO.reservation.ReservationRequestDTO;
@@ -56,6 +57,17 @@ public class ReservationService extends BaseService<
     @Override
     protected ReservationSpecification getSpecification() {
         return reservationSpecification;
+    }
+
+    @Override
+    public ReservationDTO save(ReservationRequestDTO requestDTO) {
+        ReservationEntity reservation = reservationMapper.requestDTOToEntity(requestDTO);
+        // This fields will not be taken, they have default values!
+        reservation.setPrice(0);
+        reservation.setApproved(false);
+        reservation.setPaid(false);
+        reservationRepository.save(reservation);
+        return reservationMapper.entityToDTO(reservation);
     }
 
     public Boolean addHospitalToReservation(UUID reservationUuid, UUID hospitalUuid) {
@@ -150,10 +162,32 @@ public class ReservationService extends BaseService<
             throw new OrderException("Please make all selections to approve reservation!");
         }
 
+        if (!reservation.getPaid()) {
+            throw new PaymentException();
+        }
+
         reservation.setApproved(true);
+        reservationRepository.save(reservation);
         return Boolean.TRUE;
     }
 
+    public Boolean makePayment(UUID uuid) {
+        ReservationEntity reservation = reservationRepository.findByUuid(uuid).orElse(null);
+        if (reservation == null) {
+            throw new RecordNotFoundException("Reservation is not found!");
+        }
+
+        if (reservation.getFlight() == null || reservation.getHospital() == null || reservation.getDoctor() == null || reservation.getHotel() == null
+        ) {
+            throw new OrderException("Please make all selections to make payment!");
+        }
+
+        reservation.setPaid(true);
+        reservationRepository.save(reservation);
+        return Boolean.TRUE;
+    }
+
+    // Check every reservation that is not approved. If creation date is 10 minutes ahead of current time, delete it.
     @Scheduled(fixedDelay = 5L, timeUnit = TimeUnit.MINUTES)
     public void checkReservations() {
         List<ReservationEntity> reservationList = reservationRepository.findNotApprovedReservations();
