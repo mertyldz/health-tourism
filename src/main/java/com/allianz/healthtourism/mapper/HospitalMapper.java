@@ -11,7 +11,7 @@ public interface HospitalMapper extends IBaseMapper<HospitalEntity, HospitalDTO,
     @Override
     default HospitalEntity requestDtoToExistEntity(HospitalEntity entity, HospitalRequestDTO requestDTO) {
         entity.setName(requestDTO.getName());
-        entity.setAddress(requestDTO.getAddress());
+        entity.setCity(requestDTO.getCity());
         entity.setPhoneNumber(requestDTO.getPhoneNumber());
         entity.setEmail(requestDTO.getEmail());
         entity.setProfessionList(requestDTO.getProfessionList());

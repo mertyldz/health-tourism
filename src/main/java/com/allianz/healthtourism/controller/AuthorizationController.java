@@ -21,11 +21,12 @@ import java.util.Map;
 @RequestMapping("auth")
 public class AuthorizationController {
     @Autowired
+    UserService userService;
+    @Autowired
     private AuthenticationManager authManager;
     @Autowired
     private JWTUtil jwtUtil;
-    @Autowired
-    UserService userService;
+
     @PostMapping("login")
     public Map<String, Object> loginHandler(@RequestBody LoginRequestDTO body) {
         UsernamePasswordAuthenticationToken authInputToken =
@@ -51,6 +52,24 @@ public class AuthorizationController {
         return new ResponseEntity<>(Boolean.TRUE, HttpStatus.OK);
 
 
+    }
+
+    @PostMapping("register/admin")
+    public ResponseEntity<Boolean> registerAdmin(@RequestBody UserEntity body) {
+        userService.saveAdmin(body);
+        return new ResponseEntity<>(Boolean.TRUE, HttpStatus.OK);
+    }
+
+    @PostMapping("register/doctor")
+    public ResponseEntity<Boolean> registerDoctor(@RequestBody UserEntity body) {
+        userService.saveDoctor(body);
+        return new ResponseEntity<>(Boolean.TRUE, HttpStatus.OK);
+    }
+
+    @PostMapping("register/user")
+    public ResponseEntity<Boolean> registerUser(@RequestBody UserEntity body) {
+        userService.saveUser(body);
+        return new ResponseEntity<>(Boolean.TRUE, HttpStatus.OK);
     }
 
 
