@@ -43,7 +43,7 @@ public class SecurityConfiguration {
             "/doctor/get-all-filter",
             "/flight/get-all-filter",
             "/hospital/get-all-filter",
-            "/hotel/get-all-filter",
+            "/hotel/get-all-filter"
 
     };
     private static final String[] DOCTOR_AUTH_WHITELIST = {
@@ -61,7 +61,8 @@ public class SecurityConfiguration {
             "/hotel",
             "/hotel/**",
             "/plane",
-            "/plane/**"
+            "/plane/**",
+            "/reservation/get-all-filter"
     };
 
     private static final String[] USER_AUTH_WHITELIST = {
