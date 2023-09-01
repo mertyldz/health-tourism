@@ -85,7 +85,7 @@ public class ReservationService extends BaseService<
             throw new RecordNotFoundException("Flight is not found!");
         }
 
-        if(reservation.getDoctor() == null){
+        if (reservation.getDoctor() == null) {
             throw new OrderException("Please choose the doctor first!");
         }
 
@@ -109,7 +109,7 @@ public class ReservationService extends BaseService<
             throw new CapacityException("Hotel capacity is full!");
         }
 
-        if(reservation.getFlight() == null){
+        if (reservation.getFlight() == null) {
             throw new OrderException("Please choose the flight first!");
         }
 
@@ -130,7 +130,7 @@ public class ReservationService extends BaseService<
             throw new RecordNotFoundException("Doctor is not found!");
         }
 
-        if(reservation.getHospital() == null){
+        if (reservation.getHospital() == null) {
             throw new OrderException("Please choose the hospital first!");
         }
 
@@ -144,6 +144,12 @@ public class ReservationService extends BaseService<
         if (reservation == null) {
             throw new RecordNotFoundException("Reservation is not found!");
         }
+
+        if (reservation.getFlight() == null || reservation.getHospital() == null || reservation.getDoctor() == null || reservation.getHotel() == null
+        ) {
+            throw new OrderException("Please make all selections to approve reservation!");
+        }
+
         reservation.setApproved(true);
         return Boolean.TRUE;
     }
