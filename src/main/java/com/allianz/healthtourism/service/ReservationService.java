@@ -3,6 +3,7 @@ package com.allianz.healthtourism.service;
 import com.allianz.healthtourism.database.entity.*;
 import com.allianz.healthtourism.database.repository.*;
 import com.allianz.healthtourism.database.specification.ReservationSpecification;
+import com.allianz.healthtourism.exceptions.CapacityException;
 import com.allianz.healthtourism.exceptions.RecordNotFoundException;
 import com.allianz.healthtourism.mapper.ReservationMapper;
 import com.allianz.healthtourism.model.requestDTO.reservation.ReservationRequestDTO;
@@ -97,6 +98,12 @@ public class ReservationService extends BaseService<
         if (hotel == null) {
             throw new RecordNotFoundException("Hotel is not found!");
         }
+
+        if (hotel.getTakenCapacity().equals(hotel.getTotalCapacity())) {
+            throw new CapacityException("Hotel capacity is full!");
+        }
+
+        hotel.setTakenCapacity(hotel.getTakenCapacity() + 1);
         reservation.setHotel(hotel);
         reservationRepository.save(reservation);
         return Boolean.TRUE;

@@ -8,4 +8,9 @@ public class RecordNotFoundException extends NullPointerException {
     public RecordNotFoundException(String s) {
         System.out.println("Record not found!");
     }
+
+    @Override
+    public String getMessage() {
+        return "Record not found!";
+    }
 }
