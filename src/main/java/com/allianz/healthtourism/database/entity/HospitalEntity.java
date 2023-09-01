@@ -17,7 +17,7 @@ public class HospitalEntity extends BaseEntity {
     private String name;
 
     @Column
-    private String address;
+    private String city;
 
     @Column
     private String phoneNumber;
@@ -39,7 +39,7 @@ public class HospitalEntity extends BaseEntity {
     public String toString() {
         return "HospitalEntity{" +
                 "name='" + name + '\'' +
-                ", address='" + address + '\'' +
+                ", address='" + city + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", email='" + email + '\'' +
                 ", professionList=" + professionList +

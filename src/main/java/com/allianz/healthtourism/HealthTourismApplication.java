@@ -165,7 +165,7 @@ public class HealthTourismApplication implements CommandLineRunner {
         HospitalEntity hospital = new HospitalEntity();
         hospital.setName("Liv");
         hospital.setEmail("info@liv.com");
-        hospital.setAddress("Ulus");
+        hospital.setCity("İstanbul");
         hospital.setPhoneNumber("+90123123");
         // Add profession to Hospital
         List<ProfessionEnum> professionEnumList = new ArrayList<>();

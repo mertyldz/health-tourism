@@ -9,7 +9,7 @@ import java.util.List;
 @Data
 public class HospitalRequestDTO extends BaseRequestDTO {
     private String name;
-    private String address;
+    private String city;
     private String phoneNumber;
     private String email;
     private List<ProfessionEnum> professionList;
