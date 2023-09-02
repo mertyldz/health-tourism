@@ -9,8 +9,4 @@ public class RecordNotFoundException extends NullPointerException {
         super(s);
     }
 
-    @Override
-    public String getMessage() {
-        return "Record not found!";
-    }
 }
