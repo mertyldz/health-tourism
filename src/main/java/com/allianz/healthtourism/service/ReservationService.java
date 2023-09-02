@@ -210,9 +210,15 @@ public class ReservationService extends BaseService<
         List<ReservationEntity> reservationList = reservationRepository.findNotApprovedReservations();
         for (ReservationEntity reservation : reservationList) {
             if (!(reservation.getApproved()) && reservation.getCreationDate().plusMinutes(10).isBefore(LocalDateTime.now())) {
-                reservation.getDoctor().setTakenCapacity(reservation.getDoctor().getTakenCapacity() - 1);
-                reservation.getFlight().setTakenCapacity(reservation.getFlight().getTakenCapacity() - 1);
-                reservation.getHotel().setTakenCapacity(reservation.getHotel().getTakenCapacity() - 1);
+                if (reservation.getDoctor() != null) {
+                    reservation.getDoctor().setTakenCapacity(reservation.getDoctor().getTakenCapacity() - 1);
+                }
+                if (reservation.getFlight() != null) {
+                    reservation.getFlight().setTakenCapacity(reservation.getFlight().getTakenCapacity() - 1);
+                }
+                if (reservation.getHotel() != null) {
+                    reservation.getHotel().setTakenCapacity(reservation.getHotel().getTakenCapacity() - 1);
+                }
                 reservationRepository.save(reservation);
                 reservationRepository.delete(reservation);
             }
