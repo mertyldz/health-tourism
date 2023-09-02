@@ -40,7 +40,7 @@ Before you begin, ensure you have met the following requirements:
 
 Follow these steps to set up the project:
 ```bash
-git clone
+git clone https://github.com/mertyldz/health-tourism.git
 cd health-tourism
 mvn clean install
 mvn spring-boot:run
