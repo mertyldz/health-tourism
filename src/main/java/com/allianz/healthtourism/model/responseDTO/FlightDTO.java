@@ -13,6 +13,9 @@ public class FlightDTO extends BaseDTO {
     private String departureCity;
     private String arrivalCity;
     private LocalDateTime departureTime;
+    private Integer takenCapacity;
+    private Integer totalCapacity;
+    private Integer price;
     private PlaneDTO plane;
 
 }

@@ -22,6 +22,15 @@ public class FlightEntity extends BaseEntity {
 
     @Column
     private String arrivalCity;
+    
+    @Column
+    private Integer takenCapacity;
+
+    @Column
+    private Integer totalCapacity;
+
+    @Column
+    private Integer price;
 
     @Column(columnDefinition = "TIMESTAMP")
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
