@@ -12,4 +12,5 @@ public class HotelRequestDTO extends BaseRequestDTO {
     private String address;
     private Integer takenCapacity;
     private Integer totalCapacity;
+    private Integer price;
 }

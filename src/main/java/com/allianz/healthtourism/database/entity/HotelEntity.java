@@ -22,6 +22,8 @@ public class HotelEntity extends BaseEntity {
     private Integer takenCapacity;
     @Column
     private Integer totalCapacity;
+    @Column
+    private Integer price;
     @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<ReservationEntity> reservationList;
 
