@@ -81,6 +81,10 @@ public class ReservationService extends BaseService<
             throw new RecordNotFoundException("Hospital is not found!");
         }
 
+        if (reservation.getPrice() == null) {
+            reservation.setPrice(0);
+        }
+
         reservation.setHospital(hospital);
         reservationRepository.save(reservation);
         return Boolean.TRUE;
@@ -101,6 +105,12 @@ public class ReservationService extends BaseService<
             throw new OrderException("Please choose the doctor first!");
         }
 
+        if (flight.getTakenCapacity().equals(flight.getTotalCapacity())) {
+            throw new CapacityException("Flight capacity is full!");
+        }
+
+        reservation.setPrice(reservation.getPrice() + flight.getPrice());
+        flight.setTakenCapacity(flight.getTakenCapacity() + 1);
         reservation.setFlight(flight);
         reservationRepository.save(reservation);
         return Boolean.TRUE;
@@ -117,14 +127,15 @@ public class ReservationService extends BaseService<
             throw new RecordNotFoundException("Hotel is not found!");
         }
 
-        if (hotel.getTakenCapacity().equals(hotel.getTotalCapacity())) {
-            throw new CapacityException("Hotel capacity is full!");
-        }
-
         if (reservation.getFlight() == null) {
             throw new OrderException("Please choose the flight first!");
         }
 
+        if (hotel.getTakenCapacity().equals(hotel.getTotalCapacity())) {
+            throw new CapacityException("Hotel capacity is full!");
+        }
+
+        reservation.setPrice(reservation.getPrice() + hotel.getPrice());
         hotel.setTakenCapacity(hotel.getTakenCapacity() + 1);
         reservation.setHotel(hotel);
         reservationRepository.save(reservation);
@@ -146,6 +157,12 @@ public class ReservationService extends BaseService<
             throw new OrderException("Please choose the hospital first!");
         }
 
+        if (doctor.getTakenCapacity().equals(doctor.getTotalCapacity())) {
+            throw new CapacityException("Doctor capacity is full!");
+        }
+
+        reservation.setPrice(reservation.getPrice() + doctor.getPrice());
+        doctor.setTakenCapacity(doctor.getTakenCapacity() + 1);
         reservation.setDoctor(doctor);
         reservationRepository.save(reservation);
         return Boolean.TRUE;
@@ -188,11 +205,15 @@ public class ReservationService extends BaseService<
     }
 
     // Check every reservation that is not approved. If creation date is 10 minutes ahead of current time, delete it.
-    @Scheduled(fixedDelay = 5L, timeUnit = TimeUnit.MINUTES)
+    @Scheduled(fixedDelay = 4L, timeUnit = TimeUnit.MINUTES)
     public void checkReservations() {
         List<ReservationEntity> reservationList = reservationRepository.findNotApprovedReservations();
         for (ReservationEntity reservation : reservationList) {
             if (!(reservation.getApproved()) && reservation.getCreationDate().plusMinutes(10).isBefore(LocalDateTime.now())) {
+                reservation.getDoctor().setTakenCapacity(reservation.getDoctor().getTakenCapacity() - 1);
+                reservation.getFlight().setTakenCapacity(reservation.getFlight().getTakenCapacity() - 1);
+                reservation.getHotel().setTakenCapacity(reservation.getHotel().getTakenCapacity() - 1);
+                reservationRepository.save(reservation);
                 reservationRepository.delete(reservation);
             }
         }

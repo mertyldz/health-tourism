@@ -49,18 +49,12 @@ public class HealthTourismApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        // Data Inserts to test APIs
-//        generatePatient();
-//        generateDoctor();
-//        generateHospital();
-//        addDoctorToHospital();
-//        generatePlane();
-//        generateFlight();
-//        addPlaneToFlight();
-//        generateHotel();
-//        generateReservation();
-//        generateExamination();
-//        addPatientToExamination();
+        generatePatient();
+        generateDoctor();
+        generateHospital();
+        generateFlight();
+        generateHotel();
+        generateReservation();
 
         // This generates roles to register
 //        generateRoles();
@@ -118,6 +112,7 @@ public class HealthTourismApplication implements CommandLineRunner {
         hotel.setAddress("Nişantaşı");
         hotel.setTotalCapacity(500);
         hotel.setTakenCapacity(100);
+        hotel.setPrice(1500);
         hotelRepository.save(hotel);
     }
 
@@ -138,6 +133,9 @@ public class HealthTourismApplication implements CommandLineRunner {
         flight.setFlightNo("AZXC1234");
         flight.setDepartureCity("Berlin");
         flight.setArrivalCity("Muğla");
+        flight.setTakenCapacity(10);
+        flight.setTotalCapacity(30);
+        flight.setPrice(500);
         flightRepository.save(flight);
     }
 
@@ -184,6 +182,9 @@ public class HealthTourismApplication implements CommandLineRunner {
         doctor.setGender(GenderEnum.MALE);
         doctor.setBirthDate(LocalDate.of(1996, Month.FEBRUARY, 12));
         doctor.setProfession(ProfessionEnum.PSYCHIATRY);
+        doctor.setTakenCapacity(50);
+        doctor.setTotalCapacity(100);
+        doctor.setPrice(1000);
         doctorRepository.save(doctor);
     }
 
