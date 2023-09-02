@@ -38,6 +38,15 @@ public class DoctorEntity extends BaseEntity {
     private String email;
 
     @Column
+    private Integer takenCapacity;
+
+    @Column
+    private Integer totalCapacity;
+
+    @Column
+    private Integer price;
+
+    @Column
     @Enumerated(EnumType.STRING)
     private ProfessionEnum profession;
 

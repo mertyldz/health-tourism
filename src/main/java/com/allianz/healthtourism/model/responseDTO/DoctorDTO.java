@@ -17,6 +17,9 @@ public class DoctorDTO extends BaseDTO {
     private GenderEnum gender;
     private String phoneNumber;
     private String email;
+    private Integer takenCapacity;
+    private Integer totalCapacity;
+    private Integer price;
     private ProfessionEnum profession;
 
 }
